@@ -23,6 +23,7 @@ const Futility = require('futility').default;
 ## Basic Usage
 
 ```JavaScript
+// Create a futility object with the default provided words and lists
 let futility = new Futility(/* customWordList, customLetterList */);
 
 futility.test('Kiss my @$5') // returns true
@@ -30,6 +31,15 @@ futility.test('Kiss my @$5') // returns true
 futility.replace('Kiss my @$5', 'face') // returns 'Kiss my face'
 
 futility.censor('Kiss my @$5' /*, customSymbols */) // returns 'Kiss my *!#'
+
+// Create a futility object with a custom word list
+let futility = new Futility([
+    'boat',
+    'car',
+    'train'
+]);
+
+futility.test('I drive a car') // returns true
 ```
 
 ## API
