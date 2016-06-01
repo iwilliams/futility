@@ -25,5 +25,10 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
+  "keywords": [
+      "censorship",
+      "censor",
+      "replace"
+  ],
   "homepage": "https://github.com/iwilliams/futility#readme"
 }
