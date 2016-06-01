@@ -2,6 +2,7 @@ var assert     = require('chai').assert;
 var Futility   = require('../dist/futility').default;
 var wordList   = require('../dist/futility').defaultWords;
 var letterList = require('../dist/futility').defaultLetters;
+var censor     = require('../dist/futility').censor;
 
 describe('Futility', function() {
     it('Imports correctly', function() {
@@ -18,7 +19,6 @@ describe('Futility', function() {
     it('Creates an instance', function() {
         var futility = new Futility();
         assert.isOk(futility);
-        assert.isObject(futility);
     });
 
     describe('#test()', function() {
@@ -37,20 +37,20 @@ describe('Futility', function() {
 
         it('Returns true when there is a naughty word', function() {
             // Test ass with leet speak
-            assert.isTrue(futility.test('you\'re an ass hole'));
-            assert.isTrue(futility.test('you\'re an @ss hole'));
-            assert.isTrue(futility.test('you\'re an a$s hole'));
-            assert.isTrue(futility.test('you\'re an as$ hole'));
-            assert.isTrue(futility.test('you\'re an a$$ hole'));
-            assert.isTrue(futility.test('you\'re an a5s hole'));
-            assert.isTrue(futility.test('you\'re an as5 hole'));
-            assert.isTrue(futility.test('you\'re an a55 hole'));
-            assert.isTrue(futility.test('you\'re an @$s hole'));
-            assert.isTrue(futility.test('you\'re an @$$ hole'));
-            assert.isTrue(futility.test('you\'re an @5s hole'));
-            assert.isTrue(futility.test('you\'re an @55 hole'));
-            assert.isTrue(futility.test('you\'re an @$5 hole'));
-            assert.isTrue(futility.test('you\'re an @5$ hole'));
+            assert.isTrue(futility.test('you\'re an ass hole'), 'ass');
+            assert.isTrue(futility.test('you\'re an @ss hole'), '@ss');
+            assert.isTrue(futility.test('you\'re an a$s hole'), 'a$s');
+            assert.isTrue(futility.test('you\'re an as$ hole'), 'as$');
+            assert.isTrue(futility.test('you\'re an a$$ hole'), 'a$$');
+            assert.isTrue(futility.test('you\'re an a5s hole'), 'a5s');
+            assert.isTrue(futility.test('you\'re an as5 hole'), 'as5');
+            assert.isTrue(futility.test('you\'re an a55 hole'), 'a55');
+            assert.isTrue(futility.test('you\'re an @$s hole'), '@$s');
+            assert.isTrue(futility.test('you\'re an @$$ hole'), '@$$');
+            assert.isTrue(futility.test('you\'re an @5s hole'), '@5s');
+            assert.isTrue(futility.test('you\'re an @55 hole'), '@55');
+            assert.isTrue(futility.test('you\'re an @$5 hole'), '@$5');
+            assert.isTrue(futility.test('you\'re an @5$ hole'), '@5$');
 
             // Test shit with leet speak
             assert.isTrue(futility.test('I just took a shit'));
@@ -95,11 +95,15 @@ describe('Futility', function() {
         });
 
         it('Replaces naughty words', function() {
-            assert.equal('love me', futility.replace('fuck me', 'love'));
+            assert.equal('love me', futility[Symbol.replace]('fuck me', 'love'));
+        });
+
+        it('Replaces multiple naughty words', function() {
+            assert.equal('face my face', futility[Symbol.replace]('fuck my ass', 'face'));
         });
 
         it('Doesn\'t replace wholesome words', function() {
-            assert.equal('This sentance is not naughty', futility.replace('This sentance is not naughty', 'censored'));
+            assert.equal('This sentance is not naughty', futility[Symbol.replace]('This sentance is not naughty', 'censored'));
         });
     });
 
@@ -110,39 +114,16 @@ describe('Futility', function() {
             futility = new Futility();
         });
 
-        it('Censors naughty words', function() {
-            assert.equal('**** me', futility.censor('fuck me', '*'));
+        it('Censors naughty words with symbol style', function() {
+            assert.equal('**** me', futility[Symbol.replace]('fuck me', censor('*')));
+        });
+
+        it('Censors naughty words with string style', function() {
+            assert.equal('**** me', 'fuck me'.replace(censor('*')));
         });
 
         it('Doesn\'t censors wholesome words', function() {
-            assert.equal('love me', futility.censor('love me', '*'));
-        });
-    });
-
-    describe('getters', function() {
-        var futility;
-
-        var customWords = [
-            "boat",
-            "car",
-            "train"
-        ];
-
-        beforeEach(function() {
-            futility        = new Futility(wordList, letterList);
-            customFutility  = new Futility(customWords);
-        });
-
-        it('Can retrieve the set word list', function() {
-            assert.equal(wordList, futility.wordList);
-        });
-
-        it('Can retrieve the set letter list', function() {
-            assert.equal(letterList, futility.letterList);
-        });
-
-        it('Can retrieve the set custom word list', function() {
-            assert.equal(customWords, customFutility.wordList);
+            assert.equal('love me', futility[Symbol.replace]('love me', censor('*')));
         });
     });
 });
