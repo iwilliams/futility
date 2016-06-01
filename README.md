@@ -19,3 +19,15 @@ import Futility from 'futility';
 ```
 const Futility = require('futility').default;
 ```
+
+## Basic Usage
+
+```
+let futility = new Futility(/* customWordList, customLetterList */);
+
+futility.test('Kiss my @$5') // returns true
+
+futility.replace('Kiss my @$5', 'face') // returns 'Kiss my face'
+
+futility.censor('Kiss my @$5') // returns 'Kiss my *!#'
+```
