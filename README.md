@@ -59,4 +59,4 @@ Will replace naughty words in string `s` with random characters, comic book styl
 ## Contributing
 Tests are written with mocha.
 
-`mocha test`
+`mocha`
