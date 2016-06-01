@@ -29,5 +29,19 @@ futility.test('Kiss my @$5') // returns true
 
 futility.replace('Kiss my @$5', 'face') // returns 'Kiss my face'
 
-futility.censor('Kiss my @$5') // returns 'Kiss my *!#'
+futility.censor('Kiss my @$5' /*, customSymbols */) // returns 'Kiss my *!#'
 ```
+
+## API
+
+### `new Futility(/* customWordList, customLetterList */)`
+Creates a new instance of Futility with a custom word list and/or a custom letter list. If you do not provided your own lists the defaults will be used. You can take a look at the [default word list](src/default-words.json) and the [default letter list](src/default-letters.json) to see how those are formatted.
+
+### `.test(String s)`
+Returns true if a naughty word is found in string `s` and false if the string is clean.
+
+### `.replace(String s, (String replacement|Function replacement))`
+Replaces naughty words in string `s` with string `replacement` or applys the `replacement` function to the matched string (same as `String.replace`).
+
+### `.censor(String s /*, String [customSymbols='#$@&%*!'] */)`
+Will replace naughty words in string `s` with random characters, comic book style, from the default customSymbols or provided string of custom symbols.
