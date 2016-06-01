@@ -10,19 +10,19 @@ Futility is a library for the client or server that can help you detect naughty 
 
 ### Import
 
-```
+```JavaScript
 import Futility from 'futility';
 ```
 
 ### or require
 
-```
+```JavaScript
 const Futility = require('futility').default;
 ```
 
 ## Basic Usage
 
-```
+```JavaScript
 let futility = new Futility(/* customWordList, customLetterList */);
 
 futility.test('Kiss my @$5') // returns true
