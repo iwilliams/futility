@@ -55,3 +55,8 @@ Replaces naughty words in string `s` with string `replacement` or applys the `re
 
 #### `.censor(String s /*, String [customSymbols='#$@&%*!'] */)`
 Will replace naughty words in string `s` with random characters, comic book style, from the default customSymbols or provided string of custom symbols.
+
+## Contributing
+Tests are written with mocha.
+
+`mocha test`
