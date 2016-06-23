@@ -66,6 +66,6 @@ class Futility {
     }
 }
 
-//export { defaultWords as defaultWords };
-//export { defaultLetters as defaultLetters };
+export { defaultWords as defaultWords };
+export { defaultLetters as defaultLetters };
 export default Futility;
