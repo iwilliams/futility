@@ -1,0 +1,23 @@
+{
+  "name": "futility",
+  "description": "",
+  "main": "dist/futility.js",
+  "authors": [
+    "Ian Williams <ian@iwllia.ms>"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "censorship",
+    "censor",
+    "replace"
+  ],
+  "homepage": "https://github.com/iwilliams/futility",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

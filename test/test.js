@@ -37,20 +37,20 @@ describe('Futility', function() {
 
         it('Returns true when there is a naughty word', function() {
             // Test ass with leet speak
-            assert.isTrue(futility.test('you\'re an ass hole'));
-            assert.isTrue(futility.test('you\'re an @ss hole'));
-            assert.isTrue(futility.test('you\'re an a$s hole'));
-            assert.isTrue(futility.test('you\'re an as$ hole'));
-            assert.isTrue(futility.test('you\'re an a$$ hole'));
-            assert.isTrue(futility.test('you\'re an a5s hole'));
-            assert.isTrue(futility.test('you\'re an as5 hole'));
-            assert.isTrue(futility.test('you\'re an a55 hole'));
-            assert.isTrue(futility.test('you\'re an @$s hole'));
-            assert.isTrue(futility.test('you\'re an @$$ hole'));
-            assert.isTrue(futility.test('you\'re an @5s hole'));
-            assert.isTrue(futility.test('you\'re an @55 hole'));
-            assert.isTrue(futility.test('you\'re an @$5 hole'));
-            assert.isTrue(futility.test('you\'re an @5$ hole'));
+            assert.isTrue(futility.test('you\'re an ass hole'), 'ass');
+            assert.isTrue(futility.test('you\'re an @ss hole'), '@ss');
+            assert.isTrue(futility.test('you\'re an a$s hole'), 'a$s');
+            assert.isTrue(futility.test('you\'re an as$ hole'), 'as$');
+            assert.isTrue(futility.test('you\'re an a$$ hole'), 'a$$');
+            assert.isTrue(futility.test('you\'re an a5s hole'), 'a5s');
+            assert.isTrue(futility.test('you\'re an as5 hole'), 'as5');
+            assert.isTrue(futility.test('you\'re an a55 hole'), 'a55');
+            assert.isTrue(futility.test('you\'re an @$s hole'), '@$s');
+            assert.isTrue(futility.test('you\'re an @$$ hole'), '@$$');
+            assert.isTrue(futility.test('you\'re an @5s hole'), '@5s');
+            assert.isTrue(futility.test('you\'re an @55 hole'), '@55');
+            assert.isTrue(futility.test('you\'re an @$5 hole'), '@$5');
+            assert.isTrue(futility.test('you\'re an @5$ hole'), '@5$');
 
             // Test shit with leet speak
             assert.isTrue(futility.test('I just took a shit'));
@@ -96,6 +96,10 @@ describe('Futility', function() {
 
         it('Replaces naughty words', function() {
             assert.equal('love me', futility.replace('fuck me', 'love'));
+        });
+
+        it('Replaces multiple naughty words', function() {
+            assert.equal('face my face', futility.replace('fuck my ass', 'face'));
         });
 
         it('Doesn\'t replace wholesome words', function() {

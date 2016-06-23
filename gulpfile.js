@@ -23,8 +23,8 @@ function transpileJS(entryPoint, outputName, outputPath, debug) {
           .pipe(source(outputName));
 
         if(!debug) {
-            bundler = bundler.pipe(buffer())
-              .pipe(uglify());
+            //bundler = bundler.pipe(buffer())
+              //.pipe(uglify());
         }
 
         return bundler.pipe(gulp.dest(outputPath));
